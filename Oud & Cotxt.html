@@ -4,352 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oud & Co. | Production Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- LUXURY BRAND THEME --- */
-        :root {
-            --gold: #D4AF37;
-            --dark-gold: #996515;
-            --black: #0a0a0a;
-            --deep-grey: #161616;
-            --ivory: #fffff0;
-            --bronze: #804a00;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        :root { --gold: #D4AF37; --black: #0a0a0a; --deep-grey: #1a1a1a; --ivory: #fffff0; }
         body {
-            background-color: var(--black);
-            color: var(--ivory);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            background-color: var(--black); color: var(--ivory); font-family: 'Montserrat', sans-serif;
             background-image: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
-            min-height: 100vh;
-            padding: 20px;
+            margin: 0; padding: 20px; min-height: 100vh;
         }
-
-        /* --- HEADER --- */
-        header {
-            text-align: center;
-            padding: 60px 20px;
-            border-bottom: 1px solid var(--dark-gold);
-            margin-bottom: 50px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .logo {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 3.5rem;
-            color: var(--gold);
-            letter-spacing: 10px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            font-weight: 400;
-        }
-
-        .tagline {
-            font-family: 'Georgia', serif;
-            font-style: italic;
-            font-size: 1.2rem;
-            color: var(--gold);
-            letter-spacing: 2px;
-            opacity: 0.8;
-        }
-
-        /* --- LAYOUT --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            padding-bottom: 100px;
-        }
-
-        @media (max-width: 600px) {
-            .container { grid-template-columns: 1fr; }
-            .logo { font-size: 2.5rem; }
-        }
-
-        /* --- LUXURY CARDS --- */
-        .card {
-            background: var(--deep-grey);
-            border: 1px solid var(--dark-gold);
-            padding: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-            position: relative;
-        }
-
-        .card-header {
-            font-family: 'Times New Roman', serif;
-            color: var(--gold);
-            font-size: 1.4rem;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--bronze);
-            padding-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        /* --- INPUTS --- */
-        .input-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gold);
-            margin-bottom: 8px;
-        }
-
-        input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid var(--dark-gold);
-            color: var(--ivory);
-            padding: 10px 0;
-            font-size: 1.1rem;
-            outline: none;
-            transition: border-color 0.4s;
-        }
-
-        input:focus {
-            border-bottom-color: var(--gold);
-        }
-
-        /* --- BUTTONS --- */
-        .btn-container {
-            margin-top: 30px;
-        }
-
-        button {
-            width: 100%;
-            padding: 15px;
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        button:hover {
-            background: var(--gold);
-            color: var(--black);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-        }
-
-        /* --- RESULTS --- */
-        .results {
-            margin-top: 30px;
-            background: rgba(212, 175, 55, 0.05);
-            padding: 20px;
-            border-left: 2px solid var(--gold);
-            display: none;
-        }
-
-        .result-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            font-size: 1rem;
-        }
-
-        .result-label {
-            color: var(--gold);
-            opacity: 0.9;
-        }
-
-        .result-value {
-            font-weight: 600;
-            color: var(--ivory);
-        }
-
-        footer {
-            text-align: center;
-            padding: 50px;
-            color: var(--dark-gold);
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+        header { text-align: center; padding: 40px 20px; border-bottom: 1px solid #996515; max-width: 800px; margin: 0 auto 40px; }
+        .logo { font-family: 'Cinzel', serif; font-size: 3rem; color: var(--gold); letter-spacing: 6px; text-transform: uppercase; margin-bottom: 10px; }
+        .tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; color: var(--gold); opacity: 0.8; }
+        .container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .card { background: var(--deep-grey); border: 1px solid #996515; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .card-header { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.2rem; margin-bottom: 25px; border-bottom: 1px solid #804a00; padding-bottom: 10px; text-transform: uppercase; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 5px; }
+        input { width: 100%; background: transparent; border: none; border-bottom: 1px solid #996515; color: var(--ivory); padding: 8px 0; font-size: 1rem; outline: none; }
+        button { width: 100%; padding: 12px; background: transparent; border: 1px solid var(--gold); color: var(--gold); text-transform: uppercase; letter-spacing: 2px; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        button:hover { background: var(--gold); color: var(--black); }
+        .results { margin-top: 20px; background: rgba(212, 175, 55, 0.05); padding: 15px; border-left: 2px solid var(--gold); font-size: 0.9rem; }
+        .result-item { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .result-value { color: var(--gold); font-weight: 600; }
     </style>
 </head>
 <body>
-
     <header>
         <div class="logo">Oud & Co.</div>
         <div class="tagline">Where Every Scent Tells a Story</div>
     </header>
-
     <div class="container">
-
         <div class="card">
             <h2 class="card-header">1. Formula Architect</h2>
-            <div class="input-group">
-                <label>Bottle Size (ml)</label>
-                <input type="number" id="f-size" value="200">
-            </div>
-            <div class="input-group">
-                <label>Target Concentration (%)</label>
-                <input type="number" id="f-conc" value="30">
-            </div>
-            <button onclick="calculateFormula()">Calculate Ratio</button>
-            <div id="res-formula" class="results">
-                <div class="result-item">
-                    <span class="result-label">Fragrance Oil:</span>
-                    <span class="result-value" id="out-f-oil">0 ml</span>
-                </div>
-                <div class="result-item">
-                    <span class="result-label">Carrier Base:</span>
-                    <span class="result-value" id="out-f-base">0 ml</span>
-                </div>
+            <div class="input-group"><label>Bottle Size (ml)</label><input type="number" id="f-size" value="200"></div>
+            <div class="input-group"><label>Concentration (%)</label><input type="number" id="f-conc" value="30"></div>
+            <button onclick="calcF()">Calculate Formula</button>
+            <div id="res-f" class="results" style="display:none;">
+                <div class="result-item"><span>Oil:</span><span id="out-oil" class="result-value"></span></div>
+                <div class="result-item"><span>Carrier:</span><span id="out-car" class="result-value"></span></div>
             </div>
         </div>
-
         <div class="card">
             <h2 class="card-header">2. Profit Clarity</h2>
-            <div class="input-group">
-                <label>Total Production Cost / Unit</label>
-                <input type="number" id="p-cost" placeholder="0.00">
-            </div>
-            <div class="input-group">
-                <label>Selling Price / Unit</label>
-                <input type="number" id="p-sell" placeholder="0.00">
-            </div>
-            <button onclick="calculateProfit()">Analyze ROI</button>
-            <div id="res-profit" class="results">
-                <div class="result-item">
-                    <span class="result-label">Net Profit:</span>
-                    <span class="result-value" id="out-p-net">$0.00</span>
-                </div>
-                <div class="result-item">
-                    <span class="result-label">Gross Margin:</span>
-                    <span class="result-value" id="out-p-margin">0%</span>
-                </div>
+            <div class="input-group"><label>Total Unit Cost</label><input type="number" id="p-cost" placeholder="0.00"></div>
+            <div class="input-group"><label>Selling Price</label><input type="number" id="p-sell" placeholder="0.00"></div>
+            <button onclick="calcP()">Analyze Profit</button>
+            <div id="res-p" class="results" style="display:none;">
+                <div class="result-item"><span>Profit:</span><span id="out-prof" class="result-value"></span></div>
+                <div class="result-item"><span>Margin:</span><span id="out-marg" class="result-value"></span></div>
             </div>
         </div>
-
-        <div class="card">
-            <h2 class="card-header">3. Batch Execution</h2>
-            <div class="input-group">
-                <label>Number of Bottles</label>
-                <input type="number" id="b-qty" value="95">
-            </div>
-            <div class="input-group">
-                <label>Bottle Size (ml)</label>
-                <input type="number" id="b-size" value="200">
-            </div>
-            <div class="input-group">
-                <label>Concentration (%)</label>
-                <input type="number" id="b-conc" value="30">
-            </div>
-            <button onclick="calculateBatch()">Calculate Batch</button>
-            <div id="res-batch" class="results">
-                <div class="result-item">
-                    <span class="result-label">Total Fragrance Oil:</span>
-                    <span class="result-value" id="out-b-oil">0 ml</span>
-                </div>
-                <div class="result-item">
-                    <span class="result-label">Total Carrier Base:</span>
-                    <span class="result-value" id="out-b-base">0 ml</span>
-                </div>
-                <div class="result-item">
-                    <span class="result-label">Total Volume:</span>
-                    <span class="result-value" id="out-b-total">0 ml</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2 class="card-header">4. Inventory Snapshot</h2>
-            <div class="input-group">
-                <label>Current Oil Stock (ml)</label>
-                <input type="number" id="i-oil" placeholder="ml">
-            </div>
-            <div class="input-group">
-                <label>Bottles Available</label>
-                <input type="number" id="i-bottles" placeholder="qty">
-            </div>
-            <button onclick="calculateInventory()">Check Capacity</button>
-            <div id="res-inventory" class="results">
-                <div class="result-item">
-                    <span class="result-label">Max Units Possible:</span>
-                    <span class="result-value" id="out-i-max">0 Units</span>
-                </div>
-            </div>
-        </div>
-
     </div>
-
-    <footer>
-        &copy; 2026 Oud & Co. Internal Management System
-    </footer>
-
     <script>
-        function calculateFormula() {
-            const size = parseFloat(document.getElementById('f-size').value);
-            const conc = parseFloat(document.getElementById('f-conc').value) / 100;
-            if (size && conc) {
-                const oil = size * conc;
-                const base = size - oil;
-                document.getElementById('out-f-oil').innerText = oil.toFixed(2) + ' ml';
-                document.getElementById('out-f-base').innerText = base.toFixed(2) + ' ml';
-                document.getElementById('res-formula').style.display = 'block';
-            }
+        function calcF(){
+            let s = document.getElementById('f-size').value;
+            let c = document.getElementById('f-conc').value/100;
+            document.getElementById('out-oil').innerText = (s*c).toFixed(2) + ' ml';
+            document.getElementById('out-car').innerText = (s*(1-c)).toFixed(2) + ' ml';
+            document.getElementById('res-f').style.display = 'block';
         }
-
-        function calculateProfit() {
-            const cost = parseFloat(document.getElementById('p-cost').value);
-            const sell = parseFloat(document.getElementById('p-sell').value);
-            if (cost && sell) {
-                const profit = sell - cost;
-                const margin = (profit / sell) * 100;
-                document.getElementById('out-p-net').innerText = '$' + profit.toFixed(2);
-                document.getElementById('out-p-margin').innerText = margin.toFixed(1) + '%';
-                document.getElementById('res-profit').style.display = 'block';
-            }
-        }
-
-        function calculateBatch() {
-            const qty = parseFloat(document.getElementById('b-qty').value);
-            const size = parseFloat(document.getElementById('b-size').value);
-            const conc = parseFloat(document.getElementById('b-conc').value) / 100;
-            if (qty && size && conc) {
-                const oilPer = size * conc;
-                const basePer = size - oilPer;
-                document.getElementById('out-b-oil').innerText = (oilPer * qty).toLocaleString() + ' ml';
-                document.getElementById('out-b-base').innerText = (basePer * qty).toLocaleString() + ' ml';
-                document.getElementById('out-b-total').innerText = (size * qty).toLocaleString() + ' ml';
-                document.getElementById('res-batch').style.display = 'block';
-            }
-        }
-
-        function calculateInventory() {
-            const stockOil = parseFloat(document.getElementById('i-oil').value);
-            const stockBot = parseFloat(document.getElementById('i-bottles').value);
-            const size = 200; // Standardized for Oud & Co. launch
-            const conc = 0.30; // 30% target
-            
-            if (stockOil && stockBot) {
-                const oilPerBot = size * conc;
-                const maxByOil = Math.floor(stockOil / oilPerBot);
-                const finalMax = Math.min(maxByOil, stockBot);
-                document.getElementById('out-i-max').innerText = finalMax + ' Finished Units';
-                document.getElementById('res-inventory').style.display = 'block';
-            }
+        function calcP(){
+            let c = parseFloat(document.getElementById('p-cost').value);
+            let s = parseFloat(document.getElementById('p-sell').value);
+            let p = s - c;
+            document.getElementById('out-prof').innerText = '$' + p.toFixed(2);
+            document.getElementById('out-marg').innerText = ((p/s)*100).toFixed(1) + '%';
+            document.getElementById('res-p').style.display = 'block';
         }
     </script>
 </body>
-</html> 
+</html>
